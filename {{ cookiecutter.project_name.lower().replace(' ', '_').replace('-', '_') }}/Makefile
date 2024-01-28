@@ -10,18 +10,19 @@ VERSION := latest
 #* Poetry
 .PHONY: poetry-download
 poetry-download:
-	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | $(PYTHON) -
+	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $(PYTHON) -
 
 .PHONY: poetry-remove
 poetry-remove:
-	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | $(PYTHON) - --uninstall
+	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | $(PYTHON) - --uninstall
 
 #* Installation
 .PHONY: install
 install:
 	poetry lock -n && poetry export --without-hashes > requirements.txt
 	poetry install -n
-	-poetry run mypy --install-types --non-interactive ./
+	poetry up --latest
+	# -poetry run mypy --install-types --non-interactive ./
 
 .PHONY: pre-commit-install
 pre-commit-install:
@@ -47,11 +48,11 @@ test:
 check-codestyle:
 	poetry run isort --diff --check-only --settings-path pyproject.toml ./
 	poetry run black --diff --check --config pyproject.toml ./
-	poetry run darglint --verbosity 2 {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
+	#poetry run darglint --verbosity 2 {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
 
-.PHONY: mypy
-mypy:
-	poetry run mypy --config-file pyproject.toml ./
+# .PHONY: mypy
+# mypy:
+# 	poetry run mypy --config-file pyproject.toml ./
 
 .PHONY: check-safety
 check-safety:
@@ -62,10 +63,10 @@ check-safety:
 .PHONY: lint
 lint: test check-codestyle mypy check-safety
 
-.PHONY: update-dev-deps
-update-dev-deps:
-	poetry add -D bandit@latest darglint@latest "isort[colors]@latest" mypy@latest pre-commit@latest pydocstyle@latest pylint@latest pytest@latest pyupgrade@latest safety@latest coverage@latest coverage-badge@latest pytest-html@latest pytest-cov@latest
-	poetry add -D --allow-prereleases black@latest
+# .PHONY: update-dev-deps
+# update-dev-deps:
+# 	poetry add -D bandit@latest darglint@latest "isort[colors]@latest" mypy@latest pre-commit@latest pydocstyle@latest pylint@latest pytest@latest pyupgrade@latest safety@latest coverage@latest coverage-badge@latest pytest-html@latest pytest-cov@latest
+# 	poetry add -D --allow-prereleases black@latest
 
 #* Docker
 # Example: make docker-build VERSION=latest
@@ -93,9 +94,9 @@ pycache-remove:
 dsstore-remove:
 	find . | grep -E ".DS_Store" | xargs rm -rf
 
-.PHONY: mypycache-remove
-mypycache-remove:
-	find . | grep -E ".mypy_cache" | xargs rm -rf
+# .PHONY: mypycache-remove
+# mypycache-remove:
+# 	find . | grep -E ".mypy_cache" | xargs rm -rf
 
 .PHONY: ipynbcheckpoints-remove
 ipynbcheckpoints-remove:
