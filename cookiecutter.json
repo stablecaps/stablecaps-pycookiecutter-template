@@ -8,7 +8,7 @@
   "github_name": "stablecaps",
   "email": "14529342+darkpandarts@users.noreply.github.com",
   "version": "0.1.0",
-  "line_length": 90,
+  "line_length": 88,
   "create_example_template": ["cli", "none"],
 
   "_copy_without_render": [
