@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         python-version: ["{% endraw %}{{ cookiecutter.minimal_python_version }}"{%- if cookiecutter.minimal_python_version != '3.9' -%}, "3.9"{% endif %}]{% raw %}
