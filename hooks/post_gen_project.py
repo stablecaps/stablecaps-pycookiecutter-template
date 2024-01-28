@@ -57,7 +57,7 @@ def remove_unused_files(directory: Path, module_name: str, need_to_remove_cli: b
         path.unlink()
 
 
-def print_futher_instuctions(project_name: str, github: str) -> None:
+def print_further_instuctions(project_name: str, github: str) -> None:
     """Show user what to do next after project creation.
 
     Args:
@@ -102,7 +102,7 @@ def main() -> None:
         module_name=PROJECT_MODULE,
         need_to_remove_cli=CREATE_EXAMPLE_TEMPLATE != "cli",
     )
-    print_futher_instuctions(project_name=PROJECT_NAME, github=GITHUB_USER)
+    print_further_instuctions(project_name=PROJECT_NAME, github=GITHUB_USER)
 
 
 if __name__ == "__main__":
