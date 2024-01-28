@@ -42,7 +42,7 @@ classifiers = [  #! Update me
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.minimal_python_version }}"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.dev.dependencies]
 pylint = "^3.0.3"
 black = "^24.1.1"
 isort = {extras = ["colors"], version = "^5.13.2"}
