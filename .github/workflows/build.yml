@@ -37,10 +37,6 @@ jobs:
       run: |
         make test
 
-    # - name: Run safety checks
-    #   run: |
-    #     make check-safety
-
     - name: Test installation
       run: |
         #!/bin/bash
