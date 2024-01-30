@@ -43,6 +43,13 @@ jobs:
 
     - name: Test installation
       run: |
+        #!/bin/bash
+        set -e
+
+        echo "Running test installation..."
+        pwd
+        ls -la
+
         mkdir test_install
         cd test_install
         cookiecutter gh:stablecaps/stablecaps-pycookiecutter-template \
@@ -57,3 +64,4 @@ jobs:
           version="0.1.0" \
           line_length="88" \
           create_example_template="cli"
+        cd -
