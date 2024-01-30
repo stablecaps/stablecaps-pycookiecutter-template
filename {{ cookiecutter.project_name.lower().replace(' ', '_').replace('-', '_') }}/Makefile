@@ -20,13 +20,12 @@ poetry-remove:
 #* Installation
 .PHONY: install
 install:
-	./_make/install_venv.sh $(PYTHON_VERSION)
+	# _make/install_venv.sh $(PYTHON_VERSION)
 	poetry lock -n && poetry export --without-hashes > requirements.txt
 	poetry install -n
 	poetry self update
 	poetry self add poetry-plugin-up
 	poetry up --latest
-	# -poetry run mypy --install-types --non-interactive ./
 
 .PHONY: pre-commit-install
 pre-commit-install:
