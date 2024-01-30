@@ -46,7 +46,7 @@ jobs:
         echo "Branch = ${GITHUB_REF##*/}"
         pwd
         ls -la
-
+        python3 -m pip install --user cookiecutter
         mkdir test_install
         cd test_install
         cookiecutter -v gh:stablecaps/stablecaps-pycookiecutter-template \
