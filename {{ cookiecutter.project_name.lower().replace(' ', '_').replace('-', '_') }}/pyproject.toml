@@ -42,10 +42,7 @@ classifiers = [  #! Update me
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.minimal_python_version }}"
 {% if cookiecutter.minimal_python_version == '3.7' -%}importlib_metadata = {version = "^4.5.0", python = "<3.8"}{%- endif -%}
-{%+ if cookiecutter.create_example_template == 'cli' %}
-typer = {extras = ["all"], version = "^0.4.0"}
-rich = "^10.14.0"
-{% endif %}
+
 [tool.poetry.dev-dependencies]
 pylint = "^3.0.3"
 black = "^24.1.1"
