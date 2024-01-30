@@ -53,7 +53,7 @@ jobs:
 
         mkdir test_install
         cd test_install
-        cookiecutter gh:stablecaps/stablecaps-pycookiecutter-template \
+        cookiecutter -v gh:stablecaps/stablecaps-pycookiecutter-template \
           --checkout ${GITHUB_REF##*/} \
           --no-input \
           project_name="testproject" \
