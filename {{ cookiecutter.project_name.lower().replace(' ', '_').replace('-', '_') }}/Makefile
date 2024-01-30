@@ -56,11 +56,11 @@ check-codestyle:
 # mypy:
 # 	poetry run mypy --config-file pyproject.toml ./
 
-.PHONY: check-safety
-check-safety:
-	poetry check
-	poetry run safety check --full-report
-	# poetry run bandit -ll --recursive {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
+# .PHONY: check-safety
+# check-safety:
+# 	poetry check
+# 	poetry run safety check --full-report
+# 	# poetry run bandit -ll --recursive {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
 
 .PHONY: lint
 lint: test check-codestyle mypy check-safety

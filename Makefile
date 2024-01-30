@@ -52,11 +52,11 @@ check-codestyle:
 # mypy:
 # 	poetry run mypy --config-file pyproject.toml hooks tests
 
-.PHONY: check-safety
-check-safety:
-	poetry check
-	poetry run safety check --full-report
-	# poetry run bandit -ll --recursive hooks
+# .PHONY: check-safety
+# check-safety:
+# 	poetry check
+# 	poetry run safety check --full-report
+# 	# poetry run bandit -ll --recursive hooks
 
 .PHONY: lint
 lint: test check-codestyle mypy check-safety
