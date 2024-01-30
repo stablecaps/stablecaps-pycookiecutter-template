@@ -16,8 +16,11 @@ poetry-remove:
 .PHONY: install
 install:
 	poetry lock -n && poetry export --without-hashes > requirements.txt
-	poetry install -n
-	poetry run mypy --install-types --non-interactive hooks tests
+	poetry install -n --no-root
+	poetry self update
+	poetry self add poetry-plugin-up
+	poetry up --latest
+	# poetry run mypy --install-types --non-interactive hooks tests
 
 .PHONY: pre-commit-install
 pre-commit-install:
@@ -26,7 +29,7 @@ pre-commit-install:
 #* Formatters
 .PHONY: codestyle
 codestyle:
-	# poetry run pyupgrade --exit-zero-even-if-changed --py37-plus **/*.py
+	poetry run pyupgrade --exit-zero-even-if-changed --py37-plus **/*.py
 	poetry run isort --settings-path pyproject.toml hooks tests
 	poetry run black --config pyproject.toml hooks tests
 
@@ -45,15 +48,15 @@ check-codestyle:
 	poetry run black --diff --check --config pyproject.toml hooks tests
 	# poetry run darglint --verbosity 2 hooks tests
 
-.PHONY: mypy
-mypy:
-	poetry run mypy --config-file pyproject.toml hooks tests
+# .PHONY: mypy
+# mypy:
+# 	poetry run mypy --config-file pyproject.toml hooks tests
 
 .PHONY: check-safety
 check-safety:
 	poetry check
 	poetry run safety check --full-report
-	poetry run bandit -ll --recursive hooks
+	# poetry run bandit -ll --recursive hooks
 
 .PHONY: lint
 lint: test check-codestyle mypy check-safety

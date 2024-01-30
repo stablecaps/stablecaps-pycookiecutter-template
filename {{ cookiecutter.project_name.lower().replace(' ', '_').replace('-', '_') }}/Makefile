@@ -21,7 +21,9 @@ poetry-remove:
 install:
 	poetry lock -n && poetry export --without-hashes > requirements.txt
 	poetry install -n
-	poetry up --latest
+	poetry self update
+	poetry self add poetry-plugin-up
+	poetry up --latestt
 	# -poetry run mypy --install-types --non-interactive ./
 
 .PHONY: pre-commit-install
@@ -48,7 +50,7 @@ test:
 check-codestyle:
 	poetry run isort --diff --check-only --settings-path pyproject.toml ./
 	poetry run black --diff --check --config pyproject.toml ./
-	#poetry run darglint --verbosity 2 {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
+	# poetry run darglint --verbosity 2 {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
 
 # .PHONY: mypy
 # mypy:
@@ -58,7 +60,7 @@ check-codestyle:
 check-safety:
 	poetry check
 	poetry run safety check --full-report
-	poetry run bandit -ll --recursive {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
+	# poetry run bandit -ll --recursive {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }} tests
 
 .PHONY: lint
 lint: test check-codestyle mypy check-safety

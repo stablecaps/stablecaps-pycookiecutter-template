@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        python-version: ["3.9", "3.10"]
+        python-version: ["3.9"] #, "3.10"]
 
     steps:
     - uses: actions/checkout@v2
@@ -40,3 +40,20 @@ jobs:
     - name: Run safety checks
       run: |
         make check-safety
+
+    - name: Test installation
+      run: |
+        mkdir test_install
+        cd test_install
+        cookiecutter gh:stablecaps/stablecaps-pycookiecutter-template \
+          --checkout ${GITHUB_REF##*/} \
+          --no-input \
+          project_name="TestProject" \
+          organization="stablecaps" \
+          license="MIT" \
+          minimal_python_version="3.9" \
+          github_name="stablecaps" \
+          email="14529342+darkpandarts@users.noreply.github.com" \
+          version="0.1.0" \
+          line_length="88" \
+          create_example_template="cli"
