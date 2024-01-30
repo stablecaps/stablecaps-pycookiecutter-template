@@ -2,6 +2,7 @@
 SHELL := /usr/bin/env bash
 PYTHON := python
 PYTHONPATH := `pwd`
+PYTHON_VERSION := python{{ cookiecutter.minimal_python_version }}
 
 #* Docker variables
 IMAGE := {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}
@@ -19,6 +20,7 @@ poetry-remove:
 #* Installation
 .PHONY: install
 install:
+	./_make/install_venv.sh $(PYTHON_VERSION)
 	poetry lock -n && poetry export --without-hashes > requirements.txt
 	poetry install -n
 	poetry self update
