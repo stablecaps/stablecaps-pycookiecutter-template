@@ -56,7 +56,7 @@ jobs:
         cookiecutter gh:stablecaps/stablecaps-pycookiecutter-template \
           --checkout ${GITHUB_REF##*/} \
           --no-input \
-          project_name="TestProject" \
+          project_name="testproject" \
           organization="stablecaps" \
           license="MIT" \
           minimal_python_version="3.9" \

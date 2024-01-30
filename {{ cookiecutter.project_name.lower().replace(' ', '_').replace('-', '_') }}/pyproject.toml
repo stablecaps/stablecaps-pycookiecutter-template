@@ -149,6 +149,7 @@ template_dir = "templates"
 changelog_file = "CHANGELOG.md"
 exclude_commit_patterns = []
 
+{% raw %}
 [tool.semantic_release.changelog.environment]
 block_start_string = "{%"
 block_end_string = "%}"
@@ -162,6 +163,7 @@ newline_sequence = "\n"
 keep_trailing_newline = false
 extensions = []
 autoescape = true
+{% endraw %}
 
 [tool.semantic_release.commit_author]
 env = "GIT_COMMIT_AUTHOR"
