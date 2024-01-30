@@ -47,6 +47,7 @@ jobs:
         set -e
 
         echo "Running test installation..."
+        echo "Branch = ${GITHUB_REF##*/}"
         pwd
         ls -la
 
