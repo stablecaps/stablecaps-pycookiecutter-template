@@ -7,7 +7,7 @@
 {%- set python_version_splitted = cookiecutter.minimal_python_version.split('.') | map('int') | list -%}
 # Poetry pyproject.toml: https://python-poetry.org/docs/pyproject/
 [build-system]
-requires = ["poetry_core>=1.0.0"]
+requires = ["poetry_core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
@@ -41,8 +41,12 @@ classifiers = [  #! Update me
 
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.minimal_python_version }}"
-
-[tool.poetry.dev.dependencies]
+{% if cookiecutter.minimal_python_version == '3.7' -%}importlib_metadata = {version = "^4.5.0", python = "<3.8"}{%- endif -%}
+{%+ if cookiecutter.create_example_template == 'cli' %}
+typer = {extras = ["all"], version = "^0.4.0"}
+rich = "^10.14.0"
+{% endif %}
+[tool.poetry.dev-dependencies]
 pylint = "^3.0.3"
 black = "^24.1.1"
 isort = {extras = ["colors"], version = "^5.13.2"}
@@ -54,6 +58,7 @@ coverage = "^7.4.1"
 coverage-badge = "^1.1.0"
 pytest-html = "^4.1.1"
 python-semantic-release = "^8.5.2"
+
 
 [tool.black]
 # https://github.com/psf/black
@@ -90,6 +95,7 @@ multi_line_output = 3
 indent = 4
 color_output = true
 
+
 [tool.pytest.ini_options]
 # https://docs.pytest.org/en/6.2.x/customize.html#pyproject-toml
 # Directories that are not visited by pytest collector:
@@ -111,9 +117,11 @@ branch = true
 [tool.coverage.paths]
 source = "{{ cookiecutter.project_name }}"
 
+
 [tool.coverage.report]
 fail_under = 1
 show_missing = true
+
 
 #############################################
 [tool.semantic_release]
