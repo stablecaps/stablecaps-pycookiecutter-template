@@ -126,7 +126,7 @@ source = ["tests"]
 branch = true
 
 [tool.coverage.paths]
-source = "hooks"
+source = ["hooks"]
 
 [tool.coverage.report]
 fail_under = 50
