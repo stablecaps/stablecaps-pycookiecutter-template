@@ -25,7 +25,7 @@ install:
 	poetry install -n
 	poetry self update
 	poetry self add poetry-plugin-up
-	poetry up --latestt
+	poetry up --latest
 	# -poetry run mypy --install-types --non-interactive ./
 
 .PHONY: pre-commit-install
