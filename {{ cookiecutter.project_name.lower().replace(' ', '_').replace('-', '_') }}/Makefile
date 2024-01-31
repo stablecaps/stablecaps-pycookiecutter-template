@@ -1,4 +1,6 @@
 #* Variables
+# TODO: use Makefile.venv to activate venv
+# include _make/Makefile.venv
 SHELL := /usr/bin/env bash
 PYTHON := python
 PYTHONPATH := `pwd`
@@ -7,6 +9,8 @@ PYTHON_VERSION := python{{ cookiecutter.minimal_python_version }}
 #* Docker variables
 IMAGE := {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}
 VERSION := latest
+GITHUB := {{ cookiecutter.github_name }}
+PROJECT_NAME := {{ cookiecutter.project_name }}
 
 #* Poetry
 .PHONY: poetry-download
@@ -20,7 +24,7 @@ poetry-remove:
 #* Installation
 .PHONY: install
 install:
-	# _make/install_venv.sh $(PYTHON_VERSION)
+	# _make/install_venv.sh $(PYTHON_VERSION) # TODO: get venv activation going
 	poetry lock -n && poetry export --without-hashes > requirements.txt
 	poetry install -n
 	poetry self update
@@ -115,3 +119,11 @@ build-remove:
 
 .PHONY: cleanup
 cleanup: pycache-remove dsstore-remove mypycache-remove ipynbcheckpoints-remove pytestcache-remove
+
+.PHONY: ga-initial
+ga-initial:
+	git add .
+	git commit -m ":tada: Initial commit"
+	git branch -M master
+	git remote add origin https://github.com/$(GITHUB)/$(PROJECT_NAME).git
+	git push -u origin master
