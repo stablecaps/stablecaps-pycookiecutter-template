@@ -104,8 +104,20 @@ def print_further_instuctions(project_name: str, github: str) -> None:
 
         4. Run 1-3 using `make gen-reposecrets DSN=$(DSN)`
         #
-        5. Update pyproject.toml
-        6. Update README.md
+        5. Update Github repo settings:
+            a. Only allow squash merging (disable merge & rebase)
+            b. Set squash merge to "Pull request title & description"
+            c. Automatically delete head branches
+            d. Protect master branch:
+                i. Require pull request reviews before merging
+                ii. Require approvals (1)
+                iii. Dismiss stale pull request approvals when new commits are pushed
+                iv. Require review from Code Owners
+                v. Restrict who can dismiss pull request reviews (i.e. DPArts)
+                vi. Allow specified actors to bypass required pull requests (i.e. DPArts)
+                vii. other options unchecked
+        6. Update pyproject.toml
+        7. Update README.md
 
     """
     print(textwrap.dedent(message))

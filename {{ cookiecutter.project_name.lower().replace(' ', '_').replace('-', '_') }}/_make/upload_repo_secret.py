@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import argparse
 import json
 from base64 import b64encode
 
@@ -56,7 +57,6 @@ def encrypt(public_key: str, secret_value: str) -> str:
 
 
 if __name__ == "__main__":
-    import argparse
 
     parser = argparse.ArgumentParser(description="Upload a secret to a GitHub repository")
     parser.add_argument("-t", "--token", required=True, help="GitHub personal access token")
