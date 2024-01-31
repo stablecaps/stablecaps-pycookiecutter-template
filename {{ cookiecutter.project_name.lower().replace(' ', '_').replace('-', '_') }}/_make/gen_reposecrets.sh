@@ -12,14 +12,14 @@ fi
 
 source ${HOME}/.ssh/github_pat_token.txt
 
-python3 ./upload_repo_secret.py \
+python3 _make/upload_repo_secret.py \
     --token $GITHUB_AUTH_TOKEN \
     --repository ${MYREPO} \
     --secret_name GHRS_GITHUB_API_TOKEN \
     --secret_value ${GITHUB_SECRET} \
     --owner "stablecaps"
 
-python3 ./upload_repo_secret.py \
+python3 _make/upload_repo_secret.py \
     --token $GITHUB_AUTH_TOKEN \
     --repository ${MYREPO} \
     --secret_name DEEPSOURCE_DSN_SECRET \

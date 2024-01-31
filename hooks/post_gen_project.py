@@ -77,7 +77,7 @@ def print_further_instuctions(project_name: str, github: str) -> None:
         $ make poetry-download
 
     3) Initialize poetry and install pre-commit hooks:
-
+        $ venv_create python3.x
         $ make install
         $ make pre-commit-install
 
@@ -85,12 +85,12 @@ def print_further_instuctions(project_name: str, github: str) -> None:
 
         $ make codestyle
 
-    5) Upload initial code to GitHub:
-
+    5) Upload initial code to GitHub via SSH:
+        `make ga-initial` runs:
         $ git add .
         $ git commit -m ":tada: Initial commit"
         $ git branch -M master
-        $ git remote add origin https://github.com/{github}/{project_name}.git
+        $ git remote add origin git@github.com:$(GITHUB)/$(PROJECT_NAME).git
         $ git push -u origin master
 
     6) Additional steps:
@@ -98,11 +98,11 @@ def print_further_instuctions(project_name: str, github: str) -> None:
            a. create a new token (done - in vault)
            b. set repository secret: GHRS_GITHUB_API_TOKEN: <API token that has the repo scope>
            c. use _make/upload_repo_secret.py in scriptomatix
-        2. Go to deepsource & check project has been added
+        2. Go to deepsource & check project has been activated
         3. Add unique DEEPSOURCE_DSN_SECRET to repository secrets (for coverage)
            a. use _make/upload_repo_secret.py in scriptomatix
 
-        4. Run 1-3 using `make gen-reposecrets $(PROJECT_NAME) $(DSN)`
+        4. Run 1-3 using `make gen-reposecrets DSN=$(DSN)`
         #
         5. Update pyproject.toml
         6. Update README.md
