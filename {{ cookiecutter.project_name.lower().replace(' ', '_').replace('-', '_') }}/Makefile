@@ -127,3 +127,7 @@ ga-initial:
 	git branch -M master
 	git remote add origin https://github.com/$(GITHUB)/$(PROJECT_NAME).git
 	git push -u origin master
+
+.PHONY: gen-reposecrets
+gen-reposecrets:
+	python _make/gen_reposecrets.sh $(PROJECT_NAME) $(DSN)
