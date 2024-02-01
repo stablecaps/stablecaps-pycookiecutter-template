@@ -104,7 +104,7 @@ def print_further_instuctions(project_name: str, github: str) -> None:
 
         4. Run 1-3 using `make gen-reposecrets DSN=$(DSN)`
         #
-        5. Update Github repo settings:
+        5. Update Github repo settings with `make mod-reposettings`:
             a. Only allow squash merging (disable merge & rebase)
             b. Set squash merge to "Pull request title & description"
             c. Automatically delete head branches

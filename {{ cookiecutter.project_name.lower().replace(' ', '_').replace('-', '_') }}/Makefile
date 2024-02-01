@@ -38,7 +38,7 @@ pre-commit-install:
 #* Formatters
 .PHONY: codestyle
 codestyle:
-	poetry run pyupgrade --exit-zero-even-if-changed --py{{ cookiecutter.minimal_python_version.replace('.', '') }}-plus **/*.py
+	# poetry run pyupgrade --exit-zero-even-if-changed --py{{ cookiecutter.minimal_python_version.replace('.', '') }}-plus **/*.py
 	poetry run isort --settings-path pyproject.toml ./
 	poetry run black --config pyproject.toml ./
 
@@ -131,3 +131,7 @@ ga-initial:
 .PHONY: gen-reposecrets
 gen-reposecrets:
 	./_make/gen_reposecrets.sh $(PROJECT_NAME) $(DSN)
+
+.PHONY: mod-reposettings
+mod-reposettings:
+	./_make/mod_reposettings.sh $(PROJECT_NAME)

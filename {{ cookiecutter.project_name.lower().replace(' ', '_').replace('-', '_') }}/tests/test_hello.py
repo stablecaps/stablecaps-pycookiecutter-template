@@ -1,9 +1,8 @@
 """Tests for hello function."""
 import pytest
-
+# fmt: off
 from {{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}.example import hello
-
-
+# fmt: on
 @pytest.mark.parametrize(
     ("name", "expected"),
     [

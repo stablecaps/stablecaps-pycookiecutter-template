@@ -63,7 +63,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-o",
         "--owner",
-        required=True,
+        required=False,
         default="stablecaps",
         help="GitHub repository owner. e.g. stablecaps",
     )
