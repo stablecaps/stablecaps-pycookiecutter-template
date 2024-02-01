@@ -33,11 +33,19 @@ repos:
       # https://pre-commit.com/#top_level-default_language_version
       language_version: python{{ cookiecutter.minimal_python_version }}
 
+## use this for pytest as otherwiose it is too insane
 - repo: local
   hooks:
     - id: pytest-check
       name: pytest-check
-      entry: pytest
+      entry: bash -c 'make test'
       language: system
+      # types: [python]
       pass_filenames: false
-      always_run: true
+
+- repo: https://github.com/compilerla/conventional-pre-commit
+  rev: v3.1.0
+  hooks:
+    - id: conventional-pre-commit
+      stages: [commit-msg]
+      args: []

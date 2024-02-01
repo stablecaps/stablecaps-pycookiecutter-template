@@ -93,3 +93,19 @@ build-remove:
 
 .PHONY: cleanup
 cleanup: pycache-remove dsstore-remove mypycache-remove ipynbcheckpoints-remove pytestcache-remove
+
+.PHONY: ga-initial
+ga-initial:
+	git add .
+	git commit -m ":tada: Initial commit"
+	git branch -M master
+	git remote add origin git@github.com:$(GITHUB)/$(PROJECT_NAME).git
+	git push -u origin master
+
+.PHONY: gen-reposecrets
+gen-reposecrets:
+	./_make/gen_reposecrets.sh $(PROJECT_NAME) $(DSN)
+
+.PHONY: mod-reposettings
+mod-reposettings:
+	./_make/mod_reposettings.sh $(PROJECT_NAME)

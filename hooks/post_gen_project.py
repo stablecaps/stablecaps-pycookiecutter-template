@@ -102,7 +102,7 @@ def print_further_instuctions(project_name: str, github: str) -> None:
            c. use _make/upload_repo_secret.py in scriptomatix
         2. Go to deepsource & check project has been activated
         3. Add unique DEEPSOURCE_DSN_SECRET to repository secrets (for coverage)
-           a. use _make/upload_repo_secret.py in scriptomatix
+           a. use make gen-reposecrets DSN=https://xxxx@app.deepsource.com
 
         4. Run 1-3 using `make gen-reposecrets DSN=$(DSN)`
         #

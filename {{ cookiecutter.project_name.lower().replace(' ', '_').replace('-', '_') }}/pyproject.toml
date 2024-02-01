@@ -6,9 +6,6 @@
 } -%}
 {%- set python_version_splitted = cookiecutter.minimal_python_version.split('.') | map('int') | list -%}
 # Poetry pyproject.toml: https://python-poetry.org/docs/pyproject/
-[build-system]
-requires = ["poetry_core"]
-build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "{{ cookiecutter.project_name }}"
@@ -34,6 +31,10 @@ classifiers = [  #! Update me
   {%- for minor_version in cookiecutter._all_python_minor_version if minor_version >= python_version_splitted[1] %}
   "Programming Language :: Python :: 3.{{ minor_version }}",{% endfor %}
 ]
+
+[build-system]
+requires = ["poetry_core"]
+build-backend = "poetry.core.masonry.api"
 
 {% if cookiecutter.create_example_template == 'cli' -%}[tool.poetry.scripts]
 # Entry points for the package https://python-poetry.org/docs/pyproject/#scripts
@@ -113,7 +114,7 @@ source = ["tests"]
 branch = true
 
 [tool.coverage.paths]
-source = "{{ cookiecutter.project_name }}"
+source = ["{{ cookiecutter.project_name }}"]
 
 
 [tool.coverage.report]
