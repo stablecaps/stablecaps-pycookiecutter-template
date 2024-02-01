@@ -79,7 +79,6 @@ def print_further_instuctions(project_name: str, github: str) -> None:
     3) Initialize poetry and install pre-commit hooks:
         $ venv_create python3.x
         $ make install
-        $ make pre-commit-install
 
     4) Run codestyle:
 
@@ -93,7 +92,10 @@ def print_further_instuctions(project_name: str, github: str) -> None:
         $ git remote add origin git@github.com:$(GITHUB)/$(PROJECT_NAME).git
         $ git push -u origin master
 
-    6) Additional steps:
+    6) Install pre-commit hooks:
+        $ make pre-commit-install
+
+    7) Additional steps:
         1. Setup github-repo-stats
            a. create a new token (done - in vault)
            b. set repository secret: GHRS_GITHUB_API_TOKEN: <API token that has the repo scope>
