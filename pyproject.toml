@@ -38,7 +38,7 @@ pydocstyle = "^6.3.0"
 pytest = "^8.0.0"
 pytest-cov = "^4.1.0"
 coverage = "^7.4.1"
-coverage-badge = "^1.1.0"
+coverage-badge = "^1.1.1"
 pytest-html = "^4.1.1"
 mypy = "^1.8.0"
 
