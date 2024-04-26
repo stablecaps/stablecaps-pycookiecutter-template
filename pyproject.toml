@@ -31,7 +31,7 @@ cookiecutter = "^2.5.0"
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^3.0.3"
-black = "^24.1.1"
+black = "^24.4.2"
 isort = {extras = ["colors"], version = "^5.13.2"}
 pre-commit = "^3.6.0"
 pydocstyle = "^6.3.0"
